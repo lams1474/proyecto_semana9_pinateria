@@ -10,7 +10,7 @@ def inicio():
     <h1>Bienvenido a Tienda Online – Piñatería Bryan & Kevin</h1>
     <p>Catálogo de productos y detalles para toda ocasión.</p>
 
-    <h3>Ejemplo de ruta dinámica:</h3>
+    <h3>Productos destacados:</h3>
     <ul>
         <li><a href="/producto/globos">Ver producto: Globos</a></li>
         <li><a href="/producto/peluches">Ver producto: Peluches</a></li>
