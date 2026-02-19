@@ -8,12 +8,17 @@
 <body>
 
 <header>
-    <h1>🎉 Piñatería Bryan & Kevin</h1>
-    <nav>
-        <a href="/">Inicio</a> |
-        <a href="/about">Acerca de</a> |
-        <a href="/productos">Productos</a>
-    </nav>
+    <div class="header-container">
+        <img src="{{ url_for('static', filename='logo_pinateria.png') }}" alt="Logo Piñatería" class="logo">
+        <div>
+            <h1>Piñatería Bryan & Kevin</h1>
+            <nav>
+                <a href="/">Inicio</a> |
+                <a href="/about">Acerca de</a> |
+                <a href="/productos">Productos</a>
+            </nav>
+        </div>
+    </div>
 </header>
 
 <hr>
