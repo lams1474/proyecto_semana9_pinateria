@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Buscar Producto</h2>
+
+<form method="POST">
+    <input type="text" name="nombre" placeholder="Ingrese nombre" required>
+    <button type="submit">Buscar</button>
+</form>
+
+{% if productos %}
+    <ul>
+        {% for producto in productos %}
+            <li>
+                {{ producto.get_nombre() }} -
+                Cantidad: {{ producto.get_cantidad() }} -
+                Precio: ${{ producto.get_precio() }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}

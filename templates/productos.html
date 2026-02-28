@@ -3,12 +3,37 @@
 {% block title %}Productos{% endblock %}
 
 {% block content %}
-<h2>Nuestros Productos</h2>
+<h2>Inventario de Productos</h2>
 
-<ul>
+{% if productos %}
+<table class="tabla-productos">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+    </tr>
+
     {% for producto in productos %}
-        <li>{{ producto }}</li>
+    <tr>
+        <td>{{ producto.get_id() }}</td>
+        <td>{{ producto.get_nombre() }}</td>
+        <td>{{ producto.get_cantidad() }}</td>
+        <td>${{ producto.get_precio() }}</td>
+        <td>
+            <a href="/editar/{{ producto.get_id() }}">✏ Editar</a>
+            |
+            <a href="/eliminar/{{ producto.get_id() }}"
+               onclick="return confirm('¿Está seguro de eliminar este producto?')">
+               ❌ Eliminar
+            </a>
+        </td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
+{% else %}
+<p>No hay productos registrados.</p>
+{% endif %}
 
 {% endblock %}
