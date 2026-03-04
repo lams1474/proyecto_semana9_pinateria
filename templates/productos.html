@@ -17,14 +17,14 @@
 
     {% for producto in productos %}
     <tr>
-        <td>{{ producto.get_id() }}</td>
-        <td>{{ producto.get_nombre() }}</td>
-        <td>{{ producto.get_cantidad() }}</td>
-        <td>${{ producto.get_precio() }}</td>
+        <td>{{ producto.id }}</td>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.cantidad }}</td>
+        <td>${{ producto.precio }}</td>
         <td>
-            <a href="/editar/{{ producto.get_id() }}">✏ Editar</a>
+            <a href="/editar/{{ producto.id }}">✏ Editar</a>
             |
-            <a href="/eliminar/{{ producto.get_id() }}"
+            <a href="/eliminar/{{ producto.id }}"
                onclick="return confirm('¿Está seguro de eliminar este producto?')">
                ❌ Eliminar
             </a>
