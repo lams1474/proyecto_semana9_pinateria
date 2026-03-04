@@ -9,14 +9,19 @@
 
 <header>
     <div class="header-container">
-        <img src="{{ url_for('static', filename='logo_pinateria.png') }}" alt="Logo Piñatería" class="logo">
+        <img src="{{ url_for('static', filename='logo_pinateria.png') }}" 
+             alt="Logo Piñatería" 
+             class="logo">
+
         <div>
             <h1>Piñatería Bryan & Kevin</h1>
+
             <nav>
-                <a href="/">Inicio</a> |
-                <a href="/about">Acerca de</a> |
-                <a href="/productos">Productos</a> |
-                <a href="/agregar">Agregar Producto</a>
+                <a href="{{ url_for('inicio') }}">Inicio</a> |
+                <a href="{{ url_for('about') }}">Acerca de</a> |
+                <a href="{{ url_for('productos') }}">Productos</a> |
+                <a href="{{ url_for('agregar_producto') }}">Agregar Producto</a> |
+                <a href="{{ url_for('buscar_producto') }}">Buscar</a>
             </nav>
         </div>
     </div>
@@ -25,7 +30,8 @@
 <hr>
 
 <main>
-    {% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
 </main>
 
 <hr>

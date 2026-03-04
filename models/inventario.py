@@ -1,12 +1,64 @@
+import json
+import csv
 from models.producto import Producto
 from database.db import conectar
 
+
 class Inventario:
+
     def __init__(self):
         self.productos = {}
         self.cargar_desde_bd()
 
-    # Cargar productos al iniciar
+    # =========================
+    # EXPORTACIONES
+    # =========================
+
+    def exportar_json(self):
+        datos = []
+
+        for producto in self.productos.values():
+            datos.append({
+                "id": producto.get_id(),
+                "nombre": producto.get_nombre(),
+                "cantidad": producto.get_cantidad(),
+                "precio": producto.get_precio()
+            })
+
+        with open("data/datos.json", "w", encoding="utf-8") as archivo:
+            json.dump(datos, archivo, indent=4, ensure_ascii=False)
+
+    def exportar_txt(self):
+        with open("data/datos.txt", "w", encoding="utf-8") as archivo:
+            for producto in self.productos.values():
+                linea = (
+                    f"{producto.get_id()} | "
+                    f"{producto.get_nombre()} | "
+                    f"{producto.get_cantidad()} | "
+                    f"{producto.get_precio()}\n"
+                )
+                archivo.write(linea)
+
+    def exportar_csv(self):
+        with open("data/datos.csv", "w", newline="", encoding="utf-8") as archivo:
+            writer = csv.writer(archivo)
+
+            # Encabezados
+            writer.writerow(["ID", "Nombre", "Cantidad", "Precio"])
+
+            # Datos
+            for producto in self.productos.values():
+                writer.writerow([
+                    producto.get_id(),
+                    producto.get_nombre(),
+                    producto.get_cantidad(),
+                    producto.get_precio()
+                ])
+
+    # =========================
+    # BASE DE DATOS
+    # =========================
+
     def cargar_desde_bd(self):
         conexion = conectar()
         cursor = conexion.cursor()
@@ -25,7 +77,12 @@ class Inventario:
 
         cursor.execute(
             "INSERT INTO productos (id, nombre, cantidad, precio) VALUES (?, ?, ?, ?)",
-            (producto.get_id(), producto.get_nombre(), producto.get_cantidad(), producto.get_precio())
+            (
+                producto.get_id(),
+                producto.get_nombre(),
+                producto.get_cantidad(),
+                producto.get_precio()
+            )
         )
 
         conexion.commit()
@@ -51,11 +108,17 @@ class Inventario:
             cursor = conexion.cursor()
 
             if cantidad is not None:
-                cursor.execute("UPDATE productos SET cantidad = ? WHERE id = ?", (cantidad, id))
+                cursor.execute(
+                    "UPDATE productos SET cantidad = ? WHERE id = ?",
+                    (cantidad, id)
+                )
                 self.productos[id].set_cantidad(cantidad)
 
             if precio is not None:
-                cursor.execute("UPDATE productos SET precio = ? WHERE id = ?", (precio, id))
+                cursor.execute(
+                    "UPDATE productos SET precio = ? WHERE id = ?",
+                    (precio, id)
+                )
                 self.productos[id].set_precio(precio)
 
             conexion.commit()

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Contenido del archivo TXT</h2>
+
+<pre>
+{{ contenido }}
+</pre>
+
+<a href="{{ url_for('productos') }}">Volver</a>
+{% endblock %}

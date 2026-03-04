@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "nombre": "Piñata spaiderman",
+        "cantidad": 9,
+        "precio": 5.0
+    },
+    {
+        "id": 2,
+        "nombre": "Piñata bob esponja",
+        "cantidad": 5,
+        "precio": 3.0
+    },
+    {
+        "id": 3,
+        "nombre": "Piñata stitch",
+        "cantidad": 4,
+        "precio": 6.0
+    },
+    {
+        "id": 4,
+        "nombre": "globos feliz cumple",
+        "cantidad": 14,
+        "precio": 2.0
+    },
+    {
+        "id": 5,
+        "nombre": "Tarjetas cumpleaños Spiderman",
+        "cantidad": 24,
+        "precio": 1.5
+    }
+]
