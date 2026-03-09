@@ -1,3 +1,5 @@
+from ast import Import
+
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import os
@@ -255,5 +257,8 @@ def ver_datos():
 # EJECUCIÓN
 # =========================
 
+import os
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
