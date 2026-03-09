@@ -3,37 +3,58 @@
 {% block title %}Productos{% endblock %}
 
 {% block content %}
+
 <h2>Inventario de Productos</h2>
 
 {% if productos %}
-<table class="tabla-productos">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Cantidad</th>
-        <th>Precio</th>
-        <th>Acciones</th>
-    </tr>
 
-    {% for producto in productos %}
-    <tr>
-        <td>{{ producto.id }}</td>
-        <td>{{ producto.nombre }}</td>
-        <td>{{ producto.cantidad }}</td>
-        <td>${{ producto.precio }}</td>
-        <td>
-            <a href="/editar/{{ producto.id }}">✏ Editar</a>
-            |
-            <a href="/eliminar/{{ producto.id }}"
-               onclick="return confirm('¿Está seguro de eliminar este producto?')">
-               ❌ Eliminar
-            </a>
-        </td>
-    </tr>
-    {% endfor %}
+<table class="tabla-productos">
+
+<tr>
+<th>ID</th>
+<th>Nombre</th>
+<th>Cantidad</th>
+<th>Precio</th>
+<th>Acciones</th>
+</tr>
+
+{% for producto in productos %}
+
+<tr>
+
+<td>{{ producto.id }}</td>
+
+<td>{{ producto.nombre }}</td>
+
+<td>{{ producto.cantidad }}</td>
+
+<td>${{ producto.precio }}</td>
+
+<td>
+
+<a href="{{ url_for('editar_producto', id=producto.id) }}">
+✏ Editar
+</a>
+
+|
+
+<a href="{{ url_for('eliminar_producto', id=producto.id) }}"
+onclick="return confirm('¿Está seguro de eliminar este producto?')">
+❌ Eliminar
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
 </table>
+
 {% else %}
+
 <p>No hay productos registrados.</p>
+
 {% endif %}
 
 {% endblock %}

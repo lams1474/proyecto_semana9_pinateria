@@ -1,11 +1,76 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Contenido del archivo TXT</h2>
 
-<pre>
-{{ contenido }}
-</pre>
+<div class="container">
 
-<a href="{{ url_for('productos') }}">Volver</a>
+<h2>Persistencia de Datos</h2>
+
+<!-- TXT -->
+
+<h3>Archivo TXT</h3>
+
+<table>
+<tr>
+<th>Registro</th>
+</tr>
+
+{% for linea in txt %}
+<tr>
+<td>{{ linea }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+
+<!-- JSON -->
+
+<h3>Archivo JSON</h3>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Nombre</th>
+<th>Cantidad</th>
+<th>Precio</th>
+</tr>
+
+{% for p in json_datos %}
+<tr>
+<td>{{ p.id }}</td>
+<td>{{ p.nombre }}</td>
+<td>{{ p.cantidad }}</td>
+<td>{{ p.precio }}</td>
+</tr>
+{% endfor %}
+
+</table>
+
+
+<!-- CSV -->
+
+<h3>Archivo CSV</h3>
+
+<table>
+
+{% for fila in csv_datos %}
+<tr>
+{% for columna in fila %}
+<td>{{ columna }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="{{ url_for('productos') }}">
+<button>Volver</button>
+</a>
+
+</div>
+
 {% endblock %}

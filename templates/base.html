@@ -1,43 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Piñatería Bryan & Kevin{% endblock %}</title>
+
+    <title>
+        {% block title %}
+        Piñatería Bryan & Kevin
+        {% endblock %}
+    </title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+
 <body>
 
 <header>
-    <div class="header-container">
-        <img src="{{ url_for('static', filename='logo_pinateria.png') }}" 
-             alt="Logo Piñatería" 
-             class="logo">
 
-        <div>
-            <h1>Piñatería Bryan & Kevin</h1>
+<div class="header-container">
 
-            <nav>
-                <a href="{{ url_for('inicio') }}">Inicio</a> |
-                <a href="{{ url_for('about') }}">Acerca de</a> |
-                <a href="{{ url_for('productos') }}">Productos</a> |
-                <a href="{{ url_for('agregar_producto') }}">Agregar Producto</a> |
-                <a href="{{ url_for('buscar_producto') }}">Buscar</a>
-            </nav>
-        </div>
-    </div>
+<img src="{{ url_for('static', filename='logo_pinateria.png') }}"
+     alt="Logo Piñatería"
+     class="logo">
+
+<div>
+
+<h1>Piñatería Bryan & Kevin</h1>
+
+<nav>
+
+<a href="{{ url_for('inicio') }}">Inicio</a> |
+
+<a href="{{ url_for('about') }}">Acerca de</a> |
+
+<a href="{{ url_for('productos') }}">Productos</a> |
+
+<a href="{{ url_for('agregar_producto') }}">Agregar Producto</a> |
+
+<a href="{{ url_for('buscar_producto') }}">Buscar</a> |
+
+<a href="{{ url_for('ver_datos') }}">Persistencia</a>
+
+</nav>
+
+</div>
+
+</div>
+
 </header>
 
 <hr>
 
 <main>
-    {% block content %}
-    {% endblock %}
+
+{% block content %}
+{% endblock %}
+
 </main>
 
 <hr>
 
 <footer>
-    <p>© 2026 Piñatería Bryan & Kevin - Todos los derechos reservados</p>
+
+<p>© 2026 Piñatería Bryan & Kevin - Todos los derechos reservados</p>
+
 </footer>
 
 </body>

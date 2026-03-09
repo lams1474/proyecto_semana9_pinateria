@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <h2>Buscar Producto</h2>
 
 <form method="POST">
@@ -9,15 +10,21 @@
 </form>
 
 {% if productos %}
-    <ul>
-        {% for producto in productos %}
-            <li>
-                {{ producto.get_nombre() }} -
-                Cantidad: {{ producto.get_cantidad() }} -
-                Precio: ${{ producto.get_precio() }}
-            </li>
-        {% endfor %}
-    </ul>
+
+<ul>
+
+{% for producto in productos %}
+
+<li>
+{{ producto.nombre }} -
+Cantidad: {{ producto.cantidad }} -
+Precio: ${{ producto.precio }}
+</li>
+
+{% endfor %}
+
+</ul>
+
 {% endif %}
 
 {% endblock %}
