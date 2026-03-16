@@ -1,16 +1,16 @@
 import mysql.connector
-from mysql.connector import Error
+import os
 
 def obtener_conexion():
     try:
-        conexion = mysql.connector.connect(
-            host="127.0.0.1",
-            user="root",
-            password="1234",  
-            database="pinateria_bryan_kevin",
-            auth_plugin="mysql_native_password"
+        # Esto lee lo que configuraste en Render
+        return mysql.connector.connect(
+            host=os.environ.get("DB_HOST"),
+            port=int(os.environ.get("DB_PORT", 3306)),
+            user=os.environ.get("DB_USER"),
+            password=os.environ.get("DB_PASS"),
+            database=os.environ.get("DB_NAME")
         )
-        return conexion
-    except Error as e:
-        print(f"Error al conectar a MySQL: {e}")
+    except Exception as e:
+        print(f"Error de conexión: {e}")
         return None
