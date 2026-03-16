@@ -1,0 +1,170 @@
+[
+    {
+        "id": 1,
+        "nombre": "Pi\u00f1ata Spiderman",
+        "stock": 15,
+        "precio": 20.0
+    },
+    {
+        "id": 2,
+        "nombre": "Pi\u00f1ata Princesa",
+        "stock": 10,
+        "precio": 22.0
+    },
+    {
+        "id": 3,
+        "nombre": "Pi\u00f1ata Dinosaurio",
+        "stock": 12,
+        "precio": 18.0
+    },
+    {
+        "id": 4,
+        "nombre": "Globos Fiesta",
+        "stock": 50,
+        "precio": 5.0
+    },
+    {
+        "id": 5,
+        "nombre": "Velas Cumplea\u00f1os",
+        "stock": 40,
+        "precio": 3.0
+    },
+    {
+        "id": 6,
+        "nombre": "Serpentina",
+        "stock": 60,
+        "precio": 2.5
+    },
+    {
+        "id": 7,
+        "nombre": "Confeti",
+        "stock": 45,
+        "precio": 4.0
+    },
+    {
+        "id": 8,
+        "nombre": "Pi\u00f1ata Unicornio",
+        "stock": 8,
+        "precio": 25.0
+    },
+    {
+        "id": 9,
+        "nombre": "Sombreros Fiesta",
+        "stock": 30,
+        "precio": 6.0
+    },
+    {
+        "id": 10,
+        "nombre": "Bolsas Dulces",
+        "stock": 35,
+        "precio": 7.0
+    },
+    {
+        "id": 11,
+        "nombre": "Pi\u00f1ata Batman",
+        "stock": 12,
+        "precio": 22.0
+    },
+    {
+        "id": 12,
+        "nombre": "Pi\u00f1ata Superh\u00e9roes",
+        "stock": 10,
+        "precio": 25.0
+    },
+    {
+        "id": 13,
+        "nombre": "Vasos Decorativos",
+        "stock": 60,
+        "precio": 5.0
+    },
+    {
+        "id": 14,
+        "nombre": "Platos Fiesta",
+        "stock": 50,
+        "precio": 4.0
+    },
+    {
+        "id": 15,
+        "nombre": "Pi\u00f1ata Star Wars",
+        "stock": 7,
+        "precio": 30.0
+    },
+    {
+        "id": 16,
+        "nombre": "Globos de Latex",
+        "stock": 80,
+        "precio": 2.0
+    },
+    {
+        "id": 17,
+        "nombre": "Torta de Pi\u00f1ata",
+        "stock": 15,
+        "precio": 15.0
+    },
+    {
+        "id": 18,
+        "nombre": "Cajitas de Sorpresa",
+        "stock": 40,
+        "precio": 3.5
+    },
+    {
+        "id": 19,
+        "nombre": "Pi\u00f1ata Navidad",
+        "stock": 5,
+        "precio": 28.0
+    },
+    {
+        "id": 20,
+        "nombre": "Pi\u00f1ata Mickey Mouse",
+        "stock": 11,
+        "precio": 25.0
+    },
+    {
+        "id": 21,
+        "nombre": "Confites de Colores",
+        "stock": 35,
+        "precio": 6.0
+    },
+    {
+        "id": 22,
+        "nombre": "Pinzas de Globo",
+        "stock": 45,
+        "precio": 1.5
+    },
+    {
+        "id": 23,
+        "nombre": "Serpentina Colorida",
+        "stock": 60,
+        "precio": 3.0
+    },
+    {
+        "id": 24,
+        "nombre": "Sillas Infantiles",
+        "stock": 25,
+        "precio": 10.0
+    },
+    {
+        "id": 25,
+        "nombre": "Decoraci\u00f3n de Mesa",
+        "stock": 20,
+        "precio": 12.0
+    },
+    {
+        "id": 26,
+        "nombre": "balon futsala #4",
+        "stock": 5,
+        "precio": 25.0
+    },
+    {
+        "id": 27,
+        "nombre": "balon futsala",
+        "stock": 4,
+        "precio": 20.0
+    },
+    {
+        "id": 28,
+        "nombre": "flores rojas",
+        "stock": 25,
+        "precio": 1.0
+    }
+]
