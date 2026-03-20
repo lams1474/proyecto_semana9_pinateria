@@ -1,4 +1,26 @@
+# Entorno Virtual (Carpeta venv)
+# No se sube porque cada desarrollador crea el suyo propio
 venv/
+ENV/
+env/
+bin/
+lib/
+share/
+
+# Base de Datos Local (SQLite)
+# No se sube para que la base de datos de producción sea independiente
+*.db
+*.sqlite3
+
+# Archivos de caché de Python
+# Archivos temporales que genera Python al ejecutarse
 __pycache__/
-*.pyc
-.env
+*.py[cod]
+*$py.class
+
+# Archivos de configuración de VS Code
+.vscode/
+
+# Datos persistentes locales (Opcional)
+# Si quieres que los archivos TXT/JSON/CSV de prueba no se suban, descomenta la línea de abajo:
+# data/
