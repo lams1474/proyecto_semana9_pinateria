@@ -1,28 +1,4 @@
-1,Piñata Spiderman,15,20.0
-2,Piñata Princesa,10,22.0
-3,Piñata Dinosaurio,12,18.0
-4,Globos Fiesta,50,5.0
-5,Velas Cumpleaños,40,3.0
-6,Serpentina,60,2.5
-7,Confeti,45,4.0
-8,Piñata Unicornio,8,25.0
-9,Sombreros Fiesta,30,6.0
-10,Bolsas Dulces,35,7.0
-11,Piñata Batman,12,22.0
-12,Piñata Superhéroes,10,25.0
-13,Vasos Decorativos,60,5.0
-14,Platos Fiesta,50,4.0
-15,Piñata Star Wars,7,30.0
-16,Globos de Latex,80,2.0
-17,Torta de Piñata,15,15.0
-18,Cajitas de Sorpresa,40,3.5
-19,Piñata Navidad,5,28.0
-20,Piñata Mickey Mouse,11,25.0
-21,Confites de Colores,35,6.0
-22,Pinzas de Globo,45,1.5
-23,Serpentina Colorida,60,3.0
-24,Sillas Infantiles,25,10.0
-25,Decoración de Mesa,20,12.0
-26,balon futsala #4,5,25.0
-27,balon futsala,4,20.0
-28,flores rojas,25,1.0
+36,flores azules,24,1.0
+37,rasas amarillas,20,1.0
+38,girasoles ,10,1.0
+39,caja musical,5,4.0

@@ -1,52 +1,45 @@
 {% extends 'base.html' %}
-
 {% block content %}
-
 <div class="container">
+    <h2>Persistencia de Datos</h2>
 
-<h2>Persistencia de Datos</h2>
-
-<h3>Archivo TXT</h3>
-<table border="1">
-    <tr><th>Registro</th></tr>
-    {% for linea in txt_datos %}
-    <tr><td>{{ linea }}</td></tr>
-    {% endfor %}
-</table>
-
-<h3>Archivo JSON</h3>
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Stock</th> 
-        <th>Precio</th>
-    </tr>
-    {% for p in json_datos %}
-    <tr>
-        <td>{{ p.id }}</td>
-        <td>{{ p.nombre }}</td>
-        <td>{{ p.stock }}</td> <td>{{ p.precio }}</td>
-    </tr>
-    {% endfor %}
-</table>
-
-<h3>Archivo CSV</h3>
-<table border="1">
-    {% for fila in csv_datos %}
-    <tr>
-        {% for columna in fila %}
-        <td>{{ columna }}</td>
+    <h3>Archivo TXT</h3>
+    <table border="1">
+        <tr><th>Registro (ID, Nombre, Cantidad, Precio)</th></tr>
+        {% for linea in txt %}
+        <tr><td>{{ linea }}</td></tr>
         {% endfor %}
-    </tr>
-    {% endfor %}
-</table>
+    </table>
 
-<br>
-<a href="{{ url_for('productos') }}">
-    <button>Volver</button>
-</a>
+    <h3>Archivo JSON</h3>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+        </tr>
+        {% for p in json_datos %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.cantidad }}</td>
+            <td>{{ p.precio }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 
+    <h3>Archivo CSV</h3>
+    <table border="1">
+        {% for fila in csv_datos %}
+        <tr>
+            {% for columna in fila %}
+            <td>{{ columna }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('productos') }}"><button>Volver</button></a>
 </div>
-
 {% endblock %}

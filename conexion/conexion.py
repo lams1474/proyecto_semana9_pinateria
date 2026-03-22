@@ -1,19 +1,16 @@
 import mysql.connector
-import os
+from mysql.connector import Error
 
 def obtener_conexion():
     try:
-        # Configuración para que funcione con Aiven (SSL Requerido)
-        return mysql.connector.connect(
-            host=os.environ.get("DB_HOST"),
-            port=int(os.environ.get("DB_PORT", 20271)), # Puerto de Aiven
-            user=os.environ.get("DB_USER"),
-            password=os.environ.get("DB_PASS"),
-            database=os.environ.get("DB_NAME"),
-            # IMPORTANTE PARA AIVEN:
-            ssl_disabled=False,
-            ssl_verify_cert=False # Para evitar el error de certificado que vimos antes
+        conexion = mysql.connector.connect(
+            host='localhost',
+            user='root',       # Usuario por defecto de XAMPP
+            password='1234',       # XAMPP por defecto no tiene contraseña
+            database='pinateria' # ¡ASEGÚRATE QUE TU BASE SE LLAME ASÍ!
         )
-    except Exception as e:
-        print(f"Error de conexión: {e}")
-        return None
+        if conexion.is_connected():
+            return conexion
+    except Error as e:
+        print(f"Error al conectar a MySQL: {e}")
+        return None  # Si hay error, devuelve None (esto causaba tu falla)

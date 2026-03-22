@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Inventario de Productos</h2>
-<a href="{{ url_for('agregar_producto') }}">➕ Agregar Producto</a>
-<table border="1" style="width:100%; margin-top:20px;">
+<h2>Lista de Productos</h2>
+<table border="1" style="width:100%; text-align:left;">
     <tr>
         <th>ID</th>
         <th>Nombre</th>
@@ -10,15 +9,15 @@
         <th>Precio</th>
         <th>Acciones</th>
     </tr>
-    {% for producto in productos %}
+    {% for p in productos %}
     <tr>
-        <td>{{ producto.id_producto }}</td>
-        <td>{{ producto.nombre }}</td>
-        <td>{{ producto.cantidad }}</td>
-        <td>${{ producto.precio }}</td>
+        <td>{{ p.id }}</td>
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.cantidad }}</td>
+        <td>${{ p.precio }}</td>
         <td>
-            <a href="{{ url_for('editar_producto', id=producto.id_producto) }}">✏ Editar</a> | 
-            <a href="{{ url_for('eliminar_producto', id=producto.id_producto) }}" onclick="return confirm('¿Eliminar?')">❌ Borrar</a>
+            <a href="{{ url_for('editar_producto', id=p.id) }}">Editar</a> |
+            <a href="{{ url_for('eliminar_producto', id=p.id) }}" onclick="return confirm('¿Seguro?')">Eliminar</a>
         </td>
     </tr>
     {% endfor %}

@@ -1,15 +1,12 @@
 {% extends 'base.html' %}
-
-{% block title %}Lista de Usuarios - Semana 13{% endblock %}
-
+{% block title %}Lista de Usuarios{% endblock %}
 {% block content %}
     <h1>Usuarios Registrados (MySQL)</h1>
     <div style="margin-bottom: 20px;">
-        <a href="{{ url_for('agregar_usuario') }}" class="btn-primario">➕ Registrar Nuevo Usuario</a> | 
-        <a href="{{ url_for('inicio') }}">🏠 Volver al Inicio</a>
+        <a href="{{ url_for('agregar_usuario') }}">➕ Registrar Nuevo Usuario</a>
     </div>
     
-    <table class="tabla-productos" border="1" style="width: 100%;">
+    <table border="1" style="width: 100%;">
         <thead>
             <tr>
                 <th>ID</th>
@@ -22,7 +19,7 @@
             <tr>
                 <td>{{ usuario.id_usuario }}</td>
                 <td>{{ usuario.nombre }}</td>
-                <td>{{ usuario.mail }}</td>
+                <td>{{ usuario.email }}</td>
             </tr>
             {% endfor %}
         </tbody>

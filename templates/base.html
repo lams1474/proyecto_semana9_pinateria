@@ -1,70 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-
-    <title>
-        {% block title %}
-        Piñatería Bryan & Kevin
-        {% endblock %}
-    </title>
-
+    <title>Piñatería Bryan & Kevin</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
 <body>
-
-<header>
-
-<div class="header-container">
-
-<img src="{{ url_for('static', filename='logo_pinateria.png') }}"
-     alt="Logo Piñatería"
-     class="logo">
-
-<div>
-
-<h1>Piñatería Bryan & Kevin</h1>
-
-<nav>
-
-<a href="{{ url_for('inicio') }}">Inicio</a> |
-
-<a href="{{ url_for('about') }}">Acerca de</a> |
-
-<a href="{{ url_for('productos') }}">Productos</a> |
-
-<a href="{{ url_for('agregar_producto') }}">Agregar Producto</a> |
-
-<a href="{{ url_for('buscar_producto') }}">Buscar</a> |
-
-<a href="{{ url_for('ver_datos') }}">Persistencia</a>
-
-</nav>
-
-</div>
-
-</div>
-
-</header>
-
-<hr>
-
-<main>
-
-{% block content %}
-{% endblock %}
-
-</main>
-
-<hr>
-
-<footer>
-
-<p>© 2026 Piñatería Bryan & Kevin - Todos los derechos reservados</p>
-
-</footer>
-
+    <header style="background-color: #ff69b4; color: white; padding: 15px; text-align: center;">
+        <div class="header-container">
+            <h1>Piñatería Bryan & Kevin</h1>
+            <nav>
+                <a href="{{ url_for('inicio') }}" style="color: white;">Inicio</a> |
+                <a href="{{ url_for('about') }}" style="color: white;">Acerca de</a> |
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('productos') }}" style="color: white;">Productos</a> |
+                    <a href="{{ url_for('agregar_producto') }}" style="color: white;">Agregar</a> |
+                    <a href="{{ url_for('ver_datos') }}" style="color: white;">Persistencia</a> |
+                    <strong>Hola, {{ current_user.nombre }}</strong> |
+                    <a href="{{ url_for('logout') }}" style="color: white;">Salir</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" style="color: white;">Iniciar Sesión</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+    <main style="padding: 20px;">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}{% for m in messages %}<p style="color:red">{{ m }}</p>{% endfor %}{% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
 </body>
 </html>

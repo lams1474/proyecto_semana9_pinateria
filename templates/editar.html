@@ -1,14 +1,29 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h2>Editar: {{ producto.nombre }}</h2>
-<form action="{{ url_for('editar_producto', id=producto.id_producto) }}" method="POST">
+<div style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 400px; margin: 20px auto;">
+    <h2 style="color: #e91e63; text-align: center;">Editar Producto</h2>
+    <hr style="border: 1px solid #f8bbd0;">
     
-    <label>Nuevo Stock:</label><br>
-    <input type="number" name="stock" value="{{ producto.stock }}" required><br><br>
-    
-    <label>Nuevo Precio:</label><br>
-    <input type="number" step="0.01" name="precio" value="{{ producto.precio }}" required><br><br>
-    
-    <button type="submit">Actualizar</button>
-</form>
+    <form action="{{ url_for('editar_producto', id=producto.id) }}" method="POST">
+        <p><strong>ID:</strong> {{ producto.id }}</p>
+        <p><strong>Nombre:</strong> {{ producto.nombre }}</p>
+        
+        <label for="cantidad" style="display: block; margin-top: 10px;">Nueva Cantidad:</label>
+        <input type="number" name="cantidad" value="{{ producto.cantidad }}" required 
+               style="width: 100%; padding: 8px; border: 1px solid #f8bbd0; border-radius: 5px;">
+        
+        <label for="precio" style="display: block; margin-top: 10px;">Nuevo Precio:</label>
+        <input type="step" step="0.01" name="precio" value="{{ producto.precio }}" required 
+               style="width: 100%; padding: 8px; border: 1px solid #f8bbd0; border-radius: 5px;">
+        
+        <div style="margin-top: 20px; text-align: center;">
+            <button type="submit" style="background-color: #e91e63; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                Actualizar Producto
+            </button>
+            <br><br>
+            <a href="{{ url_for('productos') }}" style="color: #ad1457; text-decoration: none; font-size: 0.9em;">Volver al inventario</a>
+        </div>
+    </form>
+</div>
 {% endblock %}
