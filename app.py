@@ -1,7 +1,13 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, make_response
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 import os, json, csv
+
+# --- IMPORTACIONES SEMANA 15 (CAPA DE SERVICIOS Y FORMULARIOS) ---
+from services.reporte_service import ReporteService
+from services.producto_service import ProductoService
+from services.cliente_service import ClienteService  # Nueva importación
+from forms.producto_form import ProductoForm
 
 # Importamos la conexión
 try:
@@ -144,7 +150,7 @@ def inicio(): return render_template("index.html")
 def about(): return render_template("about.html")
 
 @app.route("/productos")
-@login_required # Protección de ruta (Requisito 2.2)
+@login_required 
 def productos():
     lista = []
     try:
@@ -169,23 +175,52 @@ def productos():
             except: lista = []
     return render_template("productos.html", productos=lista)
 
+# --- NUEVA RUTA: LISTADO DE CLIENTES (SEMANA 15) ---
+@app.route("/clientes")
+@login_required
+def clientes():
+    lista_clientes = ClienteService.listar_clientes()
+    return render_template("clientes.html", clientes=lista_clientes)
+
+# --- RUTA REPORTE PDF (SEMANA 15) ---
+@app.route("/productos/reporte")
+@login_required
+def descargar_reporte():
+    lista_productos = ProductoService.obtener_todos()
+    pdf_content = ReporteService.generar_pdf_productos(lista_productos)
+    response = make_response(pdf_content)
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = 'attachment; filename=reporte_inventario.pdf'
+    return response
+
+# --- RUTA AGREGAR PRODUCTO (ACTUALIZADA CAPA FORMS SEMANA 15) ---
 @app.route("/agregar", methods=["GET", "POST"])
 @login_required
 def agregar_producto():
     if request.method == "POST":
-        p = {"id": int(request.form["id"]), "nombre": request.form["nombre"],
-             "cantidad": int(request.form["cantidad"]), "precio": float(request.form["precio"])}
-        con = obtener_conexion()
-        if con:
-            try:
-                cur = con.cursor()
-                cur.execute("INSERT INTO productos VALUES (%s,%s,%s,%s)", (p['id'], p['nombre'], p['cantidad'], p['precio']))
-                con.commit(); con.close()
-            except: pass
-        guardar_en_archivos(p)
-        nuevo_orm = ProductoORM(id=p['id'], nombre=p['nombre'], cantidad=p['cantidad'], precio=p['precio'])
-        db.session.add(nuevo_orm); db.session.commit()
-        return redirect(url_for("productos"))
+        # 1. Usamos la capa de formularios
+        form = ProductoForm(request.form)
+        
+        if form.es_valido():
+            datos = form.obtener_datos()
+            
+            # 2. Usamos la capa de servicios (SQL)
+            from models.producto import Producto
+            nuevo_p = Producto(datos['id'], datos['nombre'], datos['cantidad'], datos['precio'])
+            ProductoService.insertar(nuevo_p)
+            
+            # 3. Persistencia extra (lo que ya tenías)
+            guardar_en_archivos(datos)
+            nuevo_orm = ProductoORM(id=datos['id'], nombre=datos['nombre'], 
+                                   cantidad=datos['cantidad'], precio=datos['precio'])
+            db.session.add(nuevo_orm)
+            db.session.commit()
+            
+            flash("Producto agregado correctamente")
+            return redirect(url_for("productos"))
+        else:
+            flash("Error: Datos del formulario inválidos")
+            
     return render_template("agregar.html")
 
 @app.route("/datos")
@@ -222,4 +257,5 @@ def eliminar_producto(id):
     return redirect(url_for("productos"))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    puerto = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=puerto, debug=True)

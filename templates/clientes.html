@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2 style="color: #e91e63; margin: 0;">Gestión de Clientes</h2>
+    
+    <div style="text-align: right;">
+        <a href="#" class="btn btn-success" 
+           style="background-color: #2e7d32; border: none; padding: 10px 15px; border-radius: 8px; color: white; text-decoration: none; font-weight: bold; display: inline-block;">
+            <i class="fas fa-user-plus"></i> Nuevo Cliente
+        </a>
+    </div>
+</div>
+
+<table border="1" style="width:100%; text-align:left; border-collapse: collapse; border: 1px solid #f8bbd0;">
+    <tr style="background-color: #fce4ec; color: #ad1457;">
+        <th style="padding: 12px; border: 1px solid #f8bbd0;">ID</th>
+        <th style="padding: 12px; border: 1px solid #f8bbd0;">Nombre Completo</th>
+        <th style="padding: 12px; border: 1px solid #f8bbd0;">Cédula / DNI</th>
+        <th style="padding: 12px; border: 1px solid #f8bbd0;">Teléfono</th>
+        <th style="padding: 12px; border: 1px solid #f8bbd0;">Acciones</th>
+    </tr>
+    
+    {% if clientes %}
+        {% for c in clientes %}
+        <tr style="border-bottom: 1px solid #f8bbd0;">
+            <td style="padding: 10px; border: 1px solid #f8bbd0;">{{ c.get_id() }}</td>
+            <td style="padding: 10px; border: 1px solid #f8bbd0;">{{ c.get_nombre() }}</td>
+            <td style="padding: 10px; border: 1px solid #f8bbd0;">{{ c.get_cedula() }}</td>
+            <td style="padding: 10px; border: 1px solid #f8bbd0;">{{ c.get_telefono() }}</td>
+            <td style="padding: 10px; border: 1px solid #f8bbd0;">
+                <a href="#" style="color: #0277bd; text-decoration: none; font-weight: bold;">Ver Historial</a>
+            </td>
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="5" style="text-align: center; padding: 20px; color: #888;">
+                No hay clientes registrados en el sistema.
+            </td>
+        </tr>
+    {% endif %}
+</table>
+
+<div style="margin-top: 20px;">
+    <a href="{{ url_for('inicio') }}" style="color: #ad1457; text-decoration: none;">
+        <i class="fas fa-arrow-left"></i> Volver al Menú Principal
+    </a>
+</div>
+{% endblock %}

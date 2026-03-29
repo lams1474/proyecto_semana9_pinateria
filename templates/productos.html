@@ -1,25 +1,46 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h2>Lista de Productos</h2>
-<table border="1" style="width:100%; text-align:left;">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Cantidad</th>
-        <th>Precio</th>
-        <th>Acciones</th>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2 style="color: #e91e63; margin: 0;">Lista de Productos</h2>
+    
+    <div style="text-align: right;">
+        <a href="{{ url_for('descargar_reporte') }}" class="btn btn-danger" 
+           style="background-color: #ad1457; border: none; padding: 10px 15px; border-radius: 8px; color: white; text-decoration: none; font-weight: bold; display: inline-block;">
+            <i class="fas fa-file-pdf"></i> Descargar Reporte PDF
+        </a>
+    </div>
+</div>
+
+<table border="1" style="width:100%; text-align:left; border-collapse: collapse; border: 1px solid #f8bbd0;">
+    <tr style="background-color: #fce4ec; color: #ad1457;">
+        <th style="padding: 12px; border: 1px solid #f8bbd0;">ID</th>
+        <th style="padding: 12px; border: 1px solid #f8bbd0;">Nombre</th>
+        <th style="padding: 12px; border: 1px solid #f8bbd0;">Cantidad</th>
+        <th style="padding: 12px; border: 1px solid #f8bbd0;">Precio</th>
+        <th style="padding: 12px; border: 1px solid #f8bbd0;">Acciones</th>
     </tr>
+    
     {% for p in productos %}
-    <tr>
-        <td>{{ p.id }}</td>
-        <td>{{ p.nombre }}</td>
-        <td>{{ p.cantidad }}</td>
-        <td>${{ p.precio }}</td>
-        <td>
-            <a href="{{ url_for('editar_producto', id=p.id) }}">Editar</a> |
-            <a href="{{ url_for('eliminar_producto', id=p.id) }}" onclick="return confirm('¿Seguro?')">Eliminar</a>
+    <tr style="border-bottom: 1px solid #f8bbd0;">
+        <td style="padding: 10px; border: 1px solid #f8bbd0;">{{ p.id }}</td>
+        <td style="padding: 10px; border: 1px solid #f8bbd0;">{{ p.nombre }}</td>
+        <td style="padding: 10px; border: 1px solid #f8bbd0;">{{ p.cantidad }}</td>
+        <td style="padding: 10px; border: 1px solid #f8bbd0;">${{ p.precio }}</td>
+        <td style="padding: 10px; border: 1px solid #f8bbd0;">
+            <a href="{{ url_for('editar_producto', id=p.id) }}" style="color: #e91e63; text-decoration: none; font-weight: bold;">Editar</a> | 
+            <a href="{{ url_for('eliminar_producto', id=p.id) }}" 
+               onclick="return confirm('¿Seguro que deseas eliminar este producto?')" 
+               style="color: #999; text-decoration: none;">Eliminar</a>
         </td>
     </tr>
     {% endfor %}
 </table>
+
+<div style="margin-top: 20px;">
+    <a href="{{ url_for('agregar_producto') }}" 
+       style="background-color: #e91e63; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+       + Agregar Nuevo Producto
+    </a>
+</div>
 {% endblock %}
